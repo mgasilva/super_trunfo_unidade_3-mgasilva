@@ -99,10 +99,11 @@ int main() {
     {
       printf("Deu empate.\n");
     }
+    printf("\n");
 
     printf("Área\n");
-    printf("Área da cidade da carta 1: %d\n", area[0]);
-    printf("Área da cidade da carta 2: %d\n", area[1]);
+    printf("Área da cidade da carta 1: %f\n", area[0]);
+    printf("Área da cidade da carta 2: %f\n", area[1]);
     if (area[0] > area[1])
     {
       printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
@@ -115,15 +116,16 @@ int main() {
     {
       printf("Deu empate.\n");
     }
+    printf("\n");
 
     printf("PIB:\n");
-    printf("PIB da cidade da carta 1: %d\n", pib[0]);
-    printf("PIB da cidade da carta 2: %d\n", pib[1]);
+    printf("PIB da cidade da carta 1: %f\n", pib[0]);
+    printf("PIB da cidade da carta 2: %f\n", pib[1]);
     if (pib[0] > pib[1])
     {
       printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
     }
-    else if (pob[1] > pib[0])
+    else if (pib[1] > pib[0])
     {
       printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
     }
@@ -131,6 +133,7 @@ int main() {
     {
       printf("Deu empate.\n");
     }
+    printf("\n");
 
     printf("Número de pontos turísticos:\n");
     printf("Número de pontos turísticos da cidade da carta 1: %d\n", npontos[0]);
@@ -147,15 +150,16 @@ int main() {
     {
       printf("Deu empate.\n");
     }
+    printf("\n");
 
     printf("Densidade Populacional:\n");
-    printf("Densidade Populacional da cidade da carta 1: %d\n", denspop[0]);
-    printf("Densidade Populacional da cidade da carta 2: %d\n", populacao[1]);
-    if (populacao[0] > populacao[1])
+    printf("Densidade Populacional da cidade da carta 1: %f\n", denspop[0]);
+    printf("Densidade Populacional da cidade da carta 2: %f\n", denspop[1]);
+    if (denspop[0] < denspop[1])
     {
       printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
     }
-    else if (populacao[1] > populacao[0])
+    else if (denspop[1] < denspop[0])
     {
       printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
     }
@@ -163,14 +167,33 @@ int main() {
     {
       printf("Deu empate.\n");
     }
-    printf("População:\n");
-    printf("População da cidade da carta 1: %d\n", populacao[0]);
-    printf("População da cidade da carta 2: %d\n", populacao[1]);
-    if (populacao[0] > populacao[1])
+    printf("\n");
+
+    printf("PIB per capita:\n");
+    printf("PIB per capita da cidade da carta 1: %f\n", ppc[0]);
+    printf("PIB per capita da cidade da carta 2: %f\n", ppc[1]);
+    if (ppc[0] > ppc[1])
     {
       printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
     }
-    else if (populacao[1] > populacao[0])
+    else if (ppc[1] > ppc[0])
+    {
+      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
+    }
+    else
+    {
+      printf("Deu empate.\n");
+    }
+    printf("\n");
+
+    printf("Superpoder:\n");
+    printf("Superpoder da cidade da carta 1: %f\n", superpoder[0]);
+    printf("Superpoder da cidade da carta 2: %f\n", superpoder[1]);
+    if (superpoder[0] > superpoder[1])
+    {
+      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
+    }
+    else if (superpoder[1] > superpoder[0])
     {
       printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
     }
