@@ -19,7 +19,11 @@ int main() {
     double superpoder[32];
     int escolha1 = 0;
     int escolha2 = 0;
-    int criterios[2][2];
+    double criterios[2][2];
+    char criterio1[200];
+    char criterio2[200];
+    double soma1 = 0;
+    double soma2 = 0;
     
   // Área para cadastro das cartas (hard-coded):
 
@@ -101,42 +105,50 @@ int main() {
         printf("Você escolheu o critério: população.\n\n");
         criterios[0][0] = populacao[0];
         criterios[0][1] = populacao[1];
+        strcpy(criterio1, "População");
         break;
       case 2:
         printf("Você escolheu o critério: área.\n\n");
         criterios[0][0] = area[0];
         criterios[0][1] = area[1];
+        strcpy(criterio1, "Área");
         break;
       case 3:
         printf("Você escolheu o critério: PIB.\n\n");
         criterios[0][0] = pib[0];
         criterios[0][1] = pib[1];
+        strcpy(criterio1, "PIB");
         break;
       case 4:
         printf("Você escolheu o critério: número de pontos turísticos.\n\n");
         criterios[0][0] = npontos[0];
         criterios[0][1] = npontos[1];
+        strcpy(criterio1, "Número de pontos turísticos");
         break;
       case 5:
         printf("Você escolheu o critério: densidade populacional (vence a menor).\n\n");
         criterios[0][0] = -denspop[0];
         criterios[0][1] = -denspop[1];
+        strcpy(criterio1, "Densidade populacional (negativada)");
         break;
       case 6:
         printf("Você escolheu o critério: PIB per capita.\n\n");
         criterios[0][0] = ppc[0];
         criterios[0][1] = ppc[1];
+        strcpy(criterio1, "PIB per capita");
         break;
       case 7:
         printf("Você escolheu o critério: superpoder.\n\n");
         criterios[0][0] = superpoder[0];
         criterios[0][1] = superpoder[1];
+        strcpy(criterio1, "Superpoder");
         break;
       default:
         printf("Você não escolheu um critério. Ficará em desvantagem\n");
         escolha1 = 1;
         criterios[0][0] = 0;
         criterios[0][1] = 0;
+        strcpy(criterio1, "default (0)");
     }
 
     //escolha do segundo critério
@@ -161,57 +173,80 @@ int main() {
         printf("Você escolheu o critério: população.\n\n");
         criterios[1][0] = populacao[0];
         criterios[1][1] = populacao[1];
+        strcpy(criterio2, "População");
         break;
       case 2:
         printf("Você escolheu o critério: área.\n\n");
         criterios[1][0] = area[0];
         criterios[1][1] = area[1];
+        strcpy(criterio2, "Área");
         break;
       case 3:
         printf("Você escolheu o critério: PIB.\n\n");
         criterios[1][0] = pib[0];
         criterios[1][1] = pib[1];
+        strcpy(criterio2, "PIB");
         break;
       case 4:
         printf("Você escolheu o critério: número de pontos turísticos.\n\n");
         criterios[1][0] = npontos[0];
         criterios[1][1] = npontos[1];
+        strcpy(criterio2, "Número de pontos turísticos");
         break;
       case 5:
         printf("Você escolheu o critério: densidade populacional (vence a menor).\n\n");
         criterios[1][0] = -denspop[0];
         criterios[1][1] = -denspop[1];
+        strcpy(criterio2, "Densidade populacional (negativada)");
         break;
       case 6:
         printf("Você escolheu o critério: PIB per capita.\n\n");
         criterios[1][0] = ppc[0];
         criterios[1][1] = ppc[1];
+        strcpy(criterio2, "PIB per capita");
         break;
       case 7:
         printf("Você escolheu o critério: superpoder.\n\n");
         criterios[1][0] = superpoder[0];
         criterios[1][1] = superpoder[1];
+        strcpy(criterio2, "Superpoder");
         break;
       default:
         printf("Você não escolheu um critério. Ficará em desvantagem\n");
         escolha2 = 1;
         criterios[1][0] = 0;
         criterios[1][1] = 0;
+        strcpy(criterio2, "Default");
     }
 
 
 
     //comparações
-    printf("População:\n");
-    printf("População da cidade da carta 1: %d\n", populacao[0]);
-    printf("População da cidade da carta 2: %d\n", populacao[1]);
-    if (populacao[0] > populacao[1])
+    printf("Vamos iniciar a comparação da rodada entre as cidades:\n");
+    printf("%s e %s, ", nome_cidade[0], nome_cidade[1]);
+    printf("nos quesitos: ");
+    printf("%s e %s.\n\n", criterio1, criterio2);
+
+    soma1 = criterios[0][0] + criterios[1][0];
+    soma2 = criterios[0][1] + criterios[1][1];
+
+    printf("%s:\n", nome_cidade[0]);
+    printf("%s: %f\n", criterio1, criterios[0][0]);
+    printf("%s: %f\n", criterio2, criterios[1][0]);
+    printf("Total: %f\n\n", soma1);
+
+    printf("%s:\n", nome_cidade[1]);
+    printf("%s: %f\n", criterio1, criterios[0][1]);
+    printf("%s: %f\n", criterio2, criterios[1][1]);
+    printf("Total: %f\n\n", soma2);
+    
+    if (soma1 > soma2)
     {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
+      printf("%s ganhou!!!\n",nome_cidade[0]);
     }
-    else if (populacao[1] > populacao[0])
+    else if (soma2 > soma1)
     {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
+      printf("%s ganhou.\n", nome_cidade[1]);
     }
     else
     {
@@ -219,107 +254,5 @@ int main() {
     }
     printf("\n");
 
-    printf("Área\n");
-    printf("Área da cidade da carta 1: %f\n", area[0]);
-    printf("Área da cidade da carta 2: %f\n", area[1]);
-    if (area[0] > area[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (area[1] > area[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-    printf("\n");
-
-    printf("PIB:\n");
-    printf("PIB da cidade da carta 1: %f\n", pib[0]);
-    printf("PIB da cidade da carta 2: %f\n", pib[1]);
-    if (pib[0] > pib[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (pib[1] > pib[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-    printf("\n");
-
-    printf("Número de pontos turísticos:\n");
-    printf("Número de pontos turísticos da cidade da carta 1: %d\n", npontos[0]);
-    printf("Número de pontos turísticos da cidade da carta 2: %d\n", npontos[1]);
-    if (npontos[0] > npontos[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (npontos[1] > npontos[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-    printf("\n");
-
-    printf("Densidade Populacional:\n");
-    printf("Densidade Populacional da cidade da carta 1: %f\n", denspop[0]);
-    printf("Densidade Populacional da cidade da carta 2: %f\n", denspop[1]);
-    if (denspop[0] < denspop[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (denspop[1] < denspop[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-    printf("\n");
-
-    printf("PIB per capita:\n");
-    printf("PIB per capita da cidade da carta 1: %f\n", ppc[0]);
-    printf("PIB per capita da cidade da carta 2: %f\n", ppc[1]);
-    if (ppc[0] > ppc[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (ppc[1] > ppc[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-    printf("\n");
-
-    printf("Superpoder:\n");
-    printf("Superpoder da cidade da carta 1: %f\n", superpoder[0]);
-    printf("Superpoder da cidade da carta 2: %f\n", superpoder[1]);
-    if (superpoder[0] > superpoder[1])
-    {
-      printf("A cidade 1 (%s) ganhou.\n",nome_cidade[0]);
-    }
-    else if (superpoder[1] > superpoder[0])
-    {
-      printf("A cidade 2 (%s) ganhou.\n", nome_cidade[1]);
-    }
-    else
-    {
-      printf("Deu empate.\n");
-    }
-
-
-return 0;
+    return 0;
 }
